@@ -2,7 +2,6 @@
 
 
 void GameScene::Initialize() {
-	map_ = new Map();
 	map_->Initialize();
 }
 
@@ -11,5 +10,8 @@ void GameScene::Update() {
 }
 
 void GameScene::Draw(ID3D12GraphicsCommandList* commandList) { 
-	map_->Draw(commandList);
+	Sprite::PreDraw(commandList);
+	map_->Draw();
+	Sprite::PostDraw();
+	
 }

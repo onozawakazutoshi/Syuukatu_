@@ -12,14 +12,28 @@ class Map {
 public:
 	void Initialize();
 	void Update();
-	void Draw(ID3D12GraphicsCommandList* commandList);
+	void Draw();
 
 private:
-	static const int width_ = 100;
-	static const int height_ = 100;
+	static const int width_ = 10;
+	static const int height_ = 10;
 	Mapdate map_[width_][height_] = {0};
 
-	Sprite* mapSprite = nullptr;
+	Sprite* mapSprite[width_][height_];
 
-	Vector2 mapSize = {10.0f,10.0f};
+	Vector2 mapSize = {50.0f, 50.0f};
+
+	int maptype[width_][height_] = {
+	    {2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+	    {2, 1, 1, 1, 1, 1, 1, 1, 1, 2},
+	    {2, 1, 1, 1, 1, 1, 1, 1, 1, 2},
+	    {2, 1, 1, 1, 1, 1, 1, 1, 1, 2},
+        {2, 1, 1, 1, 5, 1, 1, 1, 1, 2},
+        {2, 1, 1, 1, 1, 1, 1, 1, 1, 2},
+        {2, 1, 1, 1, 1, 1, 1, 1, 1, 2},
+        {2, 1, 1, 1, 1, 1, 1, 1, 1, 2},
+        {2, 1, 1, 1, 1, 1, 1, 1, 1, 2},
+        {2, 2, 2, 2, 2, 2, 2, 2, 2, 2}
+	};
+
 };
