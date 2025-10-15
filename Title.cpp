@@ -1,31 +1,31 @@
 #include "Title.h"
 void Title::Initialize() { 
-	uint32_t tex = TextureManager::Load("white1x1.png");
+	uint32_t tex = TextureManager::Load("Sprit/white1x1.png");
 
 	title_ = Sprite::Create(tex, {640.0f, 360.0f}, {0, 0, 0, 1}, {0.5f, 0.5f}, false, false); 
 	title_->SetSize({1280, 720});
 
-	 tex = TextureManager::Load("ra.png");
+	 tex = TextureManager::Load("Sprit/ra.png");
 
 	ra = Sprite::Create(tex, {240.0f, 360.0f}, {1, 1, 1, 0}, {0.5f, 0.5f}, false, false);
 	ra->SetSize({200, 200});
 	
-	 tex = TextureManager::Load("bi.png");
+	 tex = TextureManager::Load("Sprit/bi.png");
 
 	bi = Sprite::Create(tex, {440.0f, 360.0f}, {1, 1, 1, 0}, {0.5f, 0.5f}, false, false);
 	bi->SetSize({200, 200});
 
-	 tex = TextureManager::Load("de.png");
+	 tex = TextureManager::Load("Sprit/de.png");
 
 	de = Sprite::Create(tex, {640.0f, 360.0f}, {1, 1, 1, 0}, {0.5f, 0.5f}, false, false);
 	de->SetSize({200, 200});
 
-	 tex = TextureManager::Load("nn.png");
+	 tex = TextureManager::Load("Sprit/nn.png");
 
 	nn = Sprite::Create(tex, {840.0f, 360.0f}, {1, 1, 1, 0}, {0.5f, 0.5f}, false, false);
 	nn->SetSize({200, 200});
 
-	 tex = TextureManager::Load("su.png");
+	 tex = TextureManager::Load("Sprit/su.png");
 
 	su = Sprite::Create(tex, {1040.0f, 360.0f}, {1, 1, 1, 0}, {0.5f, 0.5f}, false, false);
 	su->SetSize({200, 200});
@@ -77,6 +77,8 @@ void Title::Update() {
 			}
 			if (input_->GetMousePosition().x >= 540 && input_->GetMousePosition().x <= 740 && input_->GetMousePosition().y >= 260 && input_->GetMousePosition().y <= 460) {
 				titlemode_ = 4;
+			} else {
+				gemeChange_ = true;
 			}
 		}
 		break;

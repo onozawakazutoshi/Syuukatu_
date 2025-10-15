@@ -8,7 +8,7 @@ void Map::Initialize() {
 		}
 	}
 	
-	uint32_t tex = TextureManager::Load("white1x1.png");
+	uint32_t tex = TextureManager::Load("Sprit/white1x1.png");
 	for (int i = 0; i < width_; i++) {
 		for (int j = 0; j < height_; j++) {
 			if (map_[i][j].type == 1) {

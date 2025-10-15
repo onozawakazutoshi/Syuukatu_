@@ -15,6 +15,8 @@ public:
 
 	void Acc();
 
+	bool IsGameChange() { return gemeChange_; }
+
 private:
 	Sprite* title_;
 	Sprite* ra;
@@ -35,5 +37,7 @@ private:
 	Vector2 acc{0.0f, 9.81f}; // 加速度 (m/s^2) 例: 重力
 
 	bool bioverflage_ = false;//座標1000を超えたどうか
+
+	bool gemeChange_ = false;
 
 };
