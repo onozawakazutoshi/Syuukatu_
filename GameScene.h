@@ -1,6 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
 #include "Map.h"
+#include "Enemy.h"
 
 using namespace KamataEngine;
 
@@ -13,5 +14,5 @@ public:
 
 private:
 	Map* map_ = new Map();
-	
+	Enemy* enemy_ = new Enemy();
 };

@@ -1,6 +1,6 @@
 #include "Title.h"
 void Title::Initialize() { 
-	uint32_t tex = TextureManager::Load("Sprit/white1x1.png");
+	uint32_t tex = TextureManager::Load("white1x1.png");
 
 	title_ = Sprite::Create(tex, {640.0f, 360.0f}, {0, 0, 0, 1}, {0.5f, 0.5f}, false, false); 
 	title_->SetSize({1280, 720});
