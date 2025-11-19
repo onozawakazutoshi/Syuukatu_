@@ -1,10 +1,16 @@
 #include "Map.h"
 
 void Map::Initialize() {
+	
+
+	
+
 	for (int i = 0; i < height_; i++) {
 		for (int j = 0; j < width_; j++) {
 			map_[j][i].position = {j * mapSize.x + 640 - width_ * mapSize.x / 2, i * mapSize.y + 360 - height_ * mapSize.y / 2};
 			map_[j][i].type = maptype[j][i];
+			worldTransform_[i][j].Initialize();
+			model_[j][i] = Model::CreateFromOBJ("cube");
 		}
 	}
 	
@@ -34,19 +40,20 @@ void Map::Initialize() {
 void Map::Update() {
 	for (int i = 0; i < height_; i++) {
 		for (int j = 0; j < width_; j++) {
-			mapSprite[j][i]->SetPosition(map_[j][i].position);
-			mapSprite[j][i]->SetSize({mapSize.x-1, mapSize.y-1});
+			worldTransform_[j][i].translation_ = Vector3{map_[j][i].position.x, map_[j][i].position.y, 0};
+			worldTransform_[j][i].UpdateMatrix();
 		}
 	}
-
+	
 }
 
-void Map::Draw() { 
-	
+void Map::Draw(ID3D12GraphicsCommandList* commandList, Camera& camera) { 
+	Model::PreDraw(commandList);
 	for (int i = 0; i < height_; i++) {
 		for (int j = 0; j < width_; j++) {
-			mapSprite[i][j]->Draw();
+			model_[j][i]->Draw(worldTransform_[j][i], camera);
 		}
 	}
+	Model::PostDraw();
 
 }

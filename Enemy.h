@@ -2,6 +2,8 @@
 #include<stdio.h>
 #include<math/Vector2.h>
 #include"KamataEngine.h"
+#include "3d/Model.h"
+#include"WorldTransformEx.h"
 
 using namespace KamataEngine;
 
@@ -62,13 +64,15 @@ private:
 
 	Sprite* enemySprite = nullptr;
 
+	Model* model_ = nullptr;
 
+	WorldTransformEx worldTransform_;
 
 public:
 	void Initialize(Map* map_);
 	void Updete();
 	void Road(int count);
-	void Drow();
+	void Drow(ID3D12GraphicsCommandList* commandList, Camera& camera);
 
 	bool GetNotRoad() {
 		return NotRoad;

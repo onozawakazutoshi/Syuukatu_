@@ -1,5 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
+#include <3D/Model.h>
+#include "WorldTransformEx.h"
 
 using namespace KamataEngine;
 
@@ -12,7 +14,7 @@ class Map {
 public:
 	void Initialize();
 	void Update();
-	void Draw();
+	void Draw(ID3D12GraphicsCommandList* commandList, Camera& camera);
 
 	Vector2 Getmappos(int x, int y) { return map_[x][y].position; };
 	int GetMachineType(int x, int y) { return map_[x][y].type; }
@@ -28,7 +30,7 @@ private:
 
 	Sprite* mapSprite[width_][height_];
 
-	Vector2 mapSize = {50.0f, 50.0f};
+	Vector2 mapSize = {5.0f, 5.0f};
 
 	int maptype[width_][height_] = {
 	    {0, 0, 0, 0, 2, 0, 0, 0, 0, 0},
@@ -42,5 +44,11 @@ private:
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 	};
+
+	Model* model_[width_][height_];
+
+	WorldTransformEx worldTransform_[width_][height_];
+
+	ObjectColor objectColor_;
 
 };

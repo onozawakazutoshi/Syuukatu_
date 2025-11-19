@@ -3,12 +3,14 @@
 #include"GameScene.h"
 #include "Title.h"
 #include "TitleChange.h"
+#include "c.h"
 	
 using namespace KamataEngine;
 
 GameScene* gameScene = new GameScene();
 Title* title = new Title();
 TitleChange* titleChange = new TitleChange();
+c* C = new c();
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
@@ -18,7 +20,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	title->Initialize();
 	titleChange->Initialize();
 	int switch_on = 0;
-	
+	C->Initialize();
 
 	while (true) {
 		if (KamataEngine::Update()) {
@@ -36,7 +38,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 			dxCommon->PreDraw();
 			title->Draw(dxCommon->GetCommandList());
 			dxCommon->PostDraw();
-			
+
 			if (title->IsGameChange()) {
 				switch_on = 2;
 			}
@@ -46,7 +48,6 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 			dxCommon->PreDraw();
 			gameScene->Draw(dxCommon->GetCommandList());
 			dxCommon->PostDraw();
-			
 
 			break;
 
@@ -57,12 +58,22 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 				title->Draw(dxCommon->GetCommandList());
 			} else {
 				gameScene->Draw(dxCommon->GetCommandList());
+				switch_on = 2;
 			}
 			titleChange->Draw(dxCommon->GetCommandList());
 			dxCommon->PostDraw();
 
 			break;
+
+		case 3:
+			C->Update();
+			dxCommon->PreDraw();
+			C->Draw(dxCommon->GetCommandList());
+			dxCommon->PostDraw();
+			
+			break;
 		}
+	
 		
 		
 	}
