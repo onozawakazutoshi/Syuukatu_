@@ -55,7 +55,7 @@ void Enemy::Initialize(Map* map_)
 	uint32_t tex = TextureManager::Load("white1x1.png");
 
 	enemySprite = Sprite::Create(tex, {postooo.x, postooo.y}, {1, 0, 0, 1}, {1.0f, 1.0f}, false, false);
-	enemySprite->SetSize({50, 50});
+	enemySprite->SetSize({100, 100});
 	worldTransform_.Initialize();
 	model_ = Model::CreateFromOBJ("cube");
 
@@ -153,6 +153,7 @@ void Enemy::Updete()
 	enemySprite->SetPosition(postooo);
 	saiki_num = 0;
 	worldTransform_.translation_ = Vector3{postooo.x-2.5f,postooo.y-2.5f,-3};
+	worldTransform_.scale_ = Vector3{2.0f, 2.0f, 2.0f};
 	worldTransform_.UpdateMatrix();
 
 	if (run < roadMaxcount + 0.9) {

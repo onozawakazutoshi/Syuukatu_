@@ -16,8 +16,14 @@ void GameScene::Update() {
 	if (Input::GetInstance()->PushKey(DIK_D)) {
 		R -= 0.05f;
 	}
+	if (Input::GetInstance()->PushKey(DIK_W)) {
+		W += 0.05f;
+	}
+	if (Input::GetInstance()->PushKey(DIK_S)) {
+		W -= 0.05f;
+	}
 	camera_.translation_ = Vector3{640, 358, -80};
-	camera_.rotation_ = Vector3{0,R,0};
+	camera_.rotation_ = Vector3{W,R,0};
 	camera_.UpdateMatrix();
 }
 

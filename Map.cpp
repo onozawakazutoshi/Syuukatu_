@@ -41,6 +41,7 @@ void Map::Update() {
 	for (int i = 0; i < height_; i++) {
 		for (int j = 0; j < width_; j++) {
 			worldTransform_[j][i].translation_ = Vector3{map_[j][i].position.x, map_[j][i].position.y, 0};
+			worldTransform_[j][i].scale_ = Vector3{2.0f, 2.0f, 2.0f};
 			worldTransform_[j][i].UpdateMatrix();
 		}
 	}

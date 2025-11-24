@@ -18,5 +18,6 @@ private:
 	Enemy* enemy_ = new Enemy();
 	Camera camera_;
 	float R = 0.0f;
+	float W = 0.0f;
 	Input* input_ = nullptr;
 };
