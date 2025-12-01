@@ -4,7 +4,7 @@
 #include"KamataEngine.h"
 #include "3d/Model.h"
 #include"WorldTransformEx.h"
-#include "Courseefect.h"
+#include "Courseefect.h"#pragma once
 
 using namespace KamataEngine;
 
@@ -16,8 +16,36 @@ struct roadData {
 	bool alive = true;
 };
 
-class Enemy
-{
+class Guardian {
+public:
+	void Initialize(Map* map_);
+	void Update();
+	void Draw(ID3D12GraphicsCommandList* commandList, Camera& camera);
+	void Road(int count);
+
+	bool GetNotRoad() { return NotRoad; }
+
+	int getValue(int row, int col) const {
+		if (row >= 0 && row < Y && col >= 0 && col < X) {
+			return m[row][col];
+		}
+		return -1; // 範囲外のときのエラー処理
+	}
+
+	roadData GetPosition() const {
+		if (recordcount > 0) {
+			return posrecord[recordcount - 1]; // 最新の座標データ
+		}
+		return {}; // 初期化された `roadData` を返す
+	}
+
+	static int saiki_num;
+
+	void Resount(Map* map_);
+	bool SetNotRoad(bool Not) { return NotRoad = Not; }
+
+	int GetHP() { return HP; }
+	int SetHP(int h) { return HP = h; }
 
 
 private:
@@ -25,7 +53,7 @@ private:
 	static const int Y = 10;
 
 	int m[Y][X];
-	
+
 	bool goflag = false;
 	roadData record[1000];
 	roadData ima;
@@ -34,15 +62,15 @@ private:
 	int ispos[2];
 
 	int golepos[2];
-	
-	int recordcount=0;
+
+	int recordcount = 0;
 
 	roadData posrecord[1000];
 
 	float run = 0;
 
 	Map* Map_;
-	
+
 	int roadMaxcount;
 
 	int count = 0;
@@ -55,11 +83,9 @@ private:
 
 	int NotRoadcount = 0;
 
-
-
 	int HP = 1;
 	KamataEngine::Vector2 postooo{};
-	KamataEngine::Vector2 sizze{20.0f,20.0f};
+	KamataEngine::Vector2 sizze{20.0f, 20.0f};
 	int maxRecursionDepth = 100; // 再帰の最大深さ
 	int currentRecursionDepth = 0;
 
@@ -71,35 +97,6 @@ private:
 
 	Courseefect* courseefect_ = nullptr;
 
-public:
-	void Initialize(Map* map_);
-	void Updete();
-	void Road(int count);
-	void Drow(ID3D12GraphicsCommandList* commandList, Camera& camera);
+	bool togoal = false;
 
-	bool GetNotRoad() {
-		return NotRoad;
-	}
-
-	int getValue(int row, int col) const {
-		if (row >= 0 && row < Y && col >= 0 && col < X) {
-			return m[row][col];
-		}
-		return -1; // 範囲外のときのエラー処理
-	}
-
-	roadData GetPosition() const {
-		if (recordcount > 0) {
-			return posrecord[recordcount - 1];  // 最新の座標データ
-		}
-		return {};  // 初期化された `roadData` を返す
-	}
-
-	static int saiki_num;
-
-	void Resount(Map* map_);
-	bool SetNotRoad(bool Not) { return NotRoad = Not; }
-
-	int GetHP() { return HP; }
-	int SetHP(int h) { return HP = h; }
 };

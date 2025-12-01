@@ -29,6 +29,7 @@ private:
 	MapDate map_[width_][height_] = {0};
 
 	Sprite* mapSprite[width_][height_];
+	Sprite* redSprite = nullptr;
 
 	Vector2 mapSize = {5.0f, 5.0f};
 
@@ -50,5 +51,9 @@ private:
 	WorldTransformEx worldTransform_[width_][height_];
 
 	ObjectColor objectColor_;
+
+	int time_ = 0;	
+
+	bool damegeFlag_ = false;
 
 };

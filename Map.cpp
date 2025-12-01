@@ -1,9 +1,9 @@
 #include "Map.h"
 
 void Map::Initialize() {
-	
-
-	
+	uint32_t tex = TextureManager::Load("white1x1.png");
+	redSprite = Sprite::Create(tex, {0, 0}, {1, 0, 0, 0}, {0.5, 0.5}, true);
+	redSprite->SetTextureHandle(tex);
 
 	for (int i = 0; i < height_; i++) {
 		for (int j = 0; j < width_; j++) {
@@ -14,7 +14,7 @@ void Map::Initialize() {
 		}
 	}
 	
-	uint32_t tex = TextureManager::Load("white1x1.png");
+	
 	for (int i = 0; i < height_; i++) {
 		for (int j = 0; j < width_; j++) {
 			if (map_[j][i].type == 0) {
@@ -45,10 +45,27 @@ void Map::Update() {
 			worldTransform_[j][i].UpdateMatrix();
 		}
 	}
+	if (Input::GetInstance()->PushKey(DIK_SPACE)&&!damegeFlag_) {
+		damegeFlag_ = true;
+	}
+	if (damegeFlag_&&time_<=10) {
+		time_ += 1;
+		if (time_%2==0) {
+			redSprite->SetColor({1, 0, 0, 0.5f});
+		} else {
+			redSprite->SetColor({1, 0, 0, 0.0f});
+		}
+
+	}
+	else {
+		damegeFlag_ = false;
+		time_ = 0;
+		redSprite->SetColor({1, 0, 0, 0.0f});
+	}
 	
 }
 
-void Map::Draw(ID3D12GraphicsCommandList* commandList, Camera& camera) { 
+void Map::Draw(ID3D12GraphicsCommandList* commandList, Camera& camera) {
 	Model::PreDraw(commandList);
 	for (int i = 0; i < height_; i++) {
 		for (int j = 0; j < width_; j++) {
@@ -57,4 +74,9 @@ void Map::Draw(ID3D12GraphicsCommandList* commandList, Camera& camera) {
 	}
 	Model::PostDraw();
 
+	Sprite::PreDraw(commandList);
+	redSprite->SetPosition({640, 360});
+	redSprite->SetSize({1280, 720});
+	redSprite->Draw();
+	Sprite::PostDraw();
 }
