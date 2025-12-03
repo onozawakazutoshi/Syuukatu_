@@ -78,9 +78,9 @@ void Enemy::Initialize(Map* map_)
 		}
 	}
 
-	courseefect_ = new Courseefect();
+	//courseefect_ = new Courseefect();
 	
-	courseefect_->Initialize(map_);
+	//courseefect_->Initialize(map_);
 }
 
 void Enemy::Resount(Map* map_) {
@@ -146,7 +146,7 @@ void Enemy::Updete()
 		Road(count);
 	}
 	for (int i = 0; i < 1000; i++) {
-		courseefect_->positionInitialize(Vector2((float)posrecord[i].ispos[0],(float) posrecord[i].ispos[1]), i);
+		//courseefect_->positionInitialize(Vector2((float)posrecord[i].ispos[0],(float) posrecord[i].ispos[1]), i);
 	}
 	// 経路上の現在の位置情報を取得して postooo に反映
 	postooo.x = (float)Map_->Getmappos(
@@ -158,7 +158,7 @@ void Enemy::Updete()
 
 	enemySprite->SetPosition(postooo);
 	saiki_num = 0;
-	worldTransform_.translation_ = Vector3{postooo.x-2.5f,postooo.y-2.5f,-3};
+	worldTransform_.translation_ = Vector3{postooo.x-2.5f,postooo.y-2.5f,4};
 	worldTransform_.scale_ = Vector3{2.0f, 2.0f, 2.0f};
 	worldTransform_.UpdateMatrix();
 

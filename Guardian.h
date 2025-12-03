@@ -4,7 +4,8 @@
 #include"KamataEngine.h"
 #include "3d/Model.h"
 #include"WorldTransformEx.h"
-#include "Courseefect.h"#pragma once
+#include "Courseefect.h"
+
 
 using namespace KamataEngine;
 

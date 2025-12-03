@@ -28,10 +28,7 @@ void GameScene::Update() {
 }
 
 void GameScene::Draw(ID3D12GraphicsCommandList* commandList) { 
-	Sprite::PreDraw(commandList);
 	map_->Draw(commandList,camera_);
 	
 	enemy_->Drow(commandList, camera_);
-	Sprite::PostDraw();
-	
 }
